@@ -15,6 +15,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
+import model.Timekeeper;
 
 /**
  *
@@ -44,7 +45,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEmp = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -73,17 +74,17 @@ public class View extends javax.swing.JFrame implements ActionListener{
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnCheck = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbTKID = new javax.swing.JComboBox<>();
         cbInout = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbEmpID = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblTK = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -109,16 +110,16 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        jScrollPane1.setViewportView(tblEmp);
+        if (tblEmp.getColumnModel().getColumnCount() > 0) {
+            tblEmp.getColumnModel().getColumn(0).setResizable(false);
+            tblEmp.getColumnModel().getColumn(1).setResizable(false);
+            tblEmp.getColumnModel().getColumn(2).setResizable(false);
+            tblEmp.getColumnModel().getColumn(3).setResizable(false);
+            tblEmp.getColumnModel().getColumn(4).setResizable(false);
+            tblEmp.getColumnModel().getColumn(5).setResizable(false);
+            tblEmp.getColumnModel().getColumn(6).setResizable(false);
+            tblEmp.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jButton2.setText("Sửa");
@@ -309,15 +310,15 @@ public class View extends javax.swing.JFrame implements ActionListener{
 
         jLabel12.setText("Emp_id");
 
-        jButton5.setText("Check in/out");
+        btnCheck.setText("Check in/out");
 
         jLabel13.setText("Date");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TK1", "TK2", "TK3", "TK4" }));
+        cbTKID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TK1", "TK2", "TK3", "TK4" }));
 
         cbInout.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In", "Out" }));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblTK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -343,12 +344,12 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane2.setViewportView(tblTK);
+        if (tblTK.getColumnModel().getColumnCount() > 0) {
+            tblTK.getColumnModel().getColumn(0).setResizable(false);
+            tblTK.getColumnModel().getColumn(1).setResizable(false);
+            tblTK.getColumnModel().getColumn(2).setResizable(false);
+            tblTK.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -365,15 +366,15 @@ public class View extends javax.swing.JFrame implements ActionListener{
                             .addComponent(jLabel12))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbEmpID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbTKID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13)
                             .addComponent(cbInout, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
+                        .addComponent(btnCheck)
                         .addGap(178, 178, 178))))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
         );
@@ -383,8 +384,8 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 .addGap(31, 31, 31)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jButton5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCheck)
+                    .addComponent(cbTKID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
@@ -396,7 +397,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -420,6 +421,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e) {
     }
+    //EmployeeViewListeners
     public void addEmpListener(ActionListener listener){
         jButton1.addActionListener(listener);
     }
@@ -435,6 +437,12 @@ public class View extends javax.swing.JFrame implements ActionListener{
     public void deleteEmpListener(ActionListener listener){
         jButton3.addActionListener(listener);
     }
+    
+    //TimeKeeperViewListeners
+    public void addTKListener(ActionListener listener){
+        btnCheck.addActionListener(listener);
+    }
+    
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -450,20 +458,19 @@ public class View extends javax.swing.JFrame implements ActionListener{
     /**
      * @param args the command line arguments
      */
-    
-
     public void showMessage(String l){
         JOptionPane.showMessageDialog(this, l);
     }
     
+    //EmployeeViewFunctions
     public void showEditEmployee(){
-        int row = jTable1.getSelectedRow();           
-        labelID.setText(jTable1.getModel().getValueAt(row, 0).toString());
-        jTextField2.setText(jTable1.getModel().getValueAt(row, 1).toString());
-        jTextField3.setText(jTable1.getModel().getValueAt(row, 2).toString());
-        jFormattedTextField1.setText(jTable1.getModel().getValueAt(row, 3).toString());
+        int row = tblEmp.getSelectedRow();           
+        labelID.setText(tblEmp.getModel().getValueAt(row, 0).toString());
+        jTextField2.setText(tblEmp.getModel().getValueAt(row, 1).toString());
+        jTextField3.setText(tblEmp.getModel().getValueAt(row, 2).toString());
+        jFormattedTextField1.setText(tblEmp.getModel().getValueAt(row, 3).toString());
        
-        switch(jTable1.getModel().getValueAt(row, 4).toString()){
+        switch(tblEmp.getModel().getValueAt(row, 4).toString()){
             case "Fresher IT":
                 jComboBox1.setSelectedIndex(0);
                 break;
@@ -477,9 +484,9 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 jComboBox1.setSelectedIndex(4);
                 break;
         }
-        jTextField4.setText(jTable1.getModel().getValueAt(row, 5).toString());
-        jTextField5.setText(jTable1.getModel().getValueAt(row, 6).toString());
-        jTextField6.setText(jTable1.getModel().getValueAt(row, 7).toString());  
+        jTextField4.setText(tblEmp.getModel().getValueAt(row, 5).toString());
+        jTextField5.setText(tblEmp.getModel().getValueAt(row, 6).toString());
+        jTextField6.setText(tblEmp.getModel().getValueAt(row, 7).toString());  
         jButton4.setEnabled(true);
         jButton1.setEnabled(false);
     }
@@ -498,7 +505,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
             emps[i][6] = list.get(i).getDeptId();
             emps[i][7] = list.get(i).getMngId();
         }
-        jTable1.setModel(new DefaultTableModel(emps, new String[] {"EMP_ID", "EMP_NAME", "EMP_NO", "HIRE_DATE", "JOB", "SALARY", "DEPT_ID", "MNG_ID"}));
+        tblEmp.setModel(new DefaultTableModel(emps, new String[] {"EMP_ID", "EMP_NAME", "EMP_NO", "HIRE_DATE", "JOB", "SALARY", "DEPT_ID", "MNG_ID"}));
     }
     
     public Employee getEmployee(){
@@ -584,23 +591,89 @@ public class View extends javax.swing.JFrame implements ActionListener{
         return emp;
     }
     
-    
     public int delEmployee(){
-        int row = jTable1.getSelectedRow();
-        return Integer.parseInt(jTable1.getModel().getValueAt(row, 0).toString());
+        int row = tblEmp.getSelectedRow();
+        return Integer.parseInt(tblEmp.getModel().getValueAt(row, 0).toString());
     }
     
     
+    //TIMEKEEPER
+    public void showListTimekeeper(List<Timekeeper> list){
+        int size = list.size();
+        
+        Object [][] tks = new Object[size][8];
+        for(int i=0; i<size; i++){
+            tks[i][0] = list.get(i).getTimekeeper_Id();
+            tks[i][1] = list.get(i).getDate_Time();
+            tks[i][2] = list.get(i).getIn_Out();
+            tks[i][3] = list.get(i).getEmpId();
+        }
+        tblTK.setModel(new DefaultTableModel(tks, new String[] {"TK_ID", "DATE", "IN/OUT", "EMP_ID"}));
+    }
+    
+    public Timekeeper getTimekeeper(){
+        Timekeeper tk = null;
+        try{    
+            String id = null;
+            switch(cbEmpID.getSelectedIndex()){
+                case 0:
+                    id = "TK1";
+                    break;
+                case 1:
+                    id = "TK2";
+                    break;
+                case 2:
+                    id = "TK3";
+                    break;
+                case 3:
+                    id = "TK4";
+                    break;
+                default:
+                    break;
+            }
+            String no = jTextField3.getText();
+          
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            Date hireDate = formatter.parse(jFormattedTextField1.getText());
+            int jobBox = jComboBox1.getSelectedIndex();
+            String job = null;
+            if(jobBox == 0){
+                job = "Fresher IT";
+            }
+            if(jobBox == 1){
+                job = "Junior IT";
+            }
+            if(jobBox == 2){
+                job = "Senior IT";
+            }
+            if(jobBox == 3){
+                job = "IT Manager";
+            }
+            float sal = Float.parseFloat(jTextField4.getText());
+            int emp_id = Integer.parseInt(jTextField5.getText());
+            java.math.BigInteger mng_id = BigInteger.valueOf(Long.parseLong(jTextField6.getText()));
+            if( jTextField2.equals("") || jTextField3.equals("") || jTextField4.equals("") || jTextField5.equals("") || jTextField6.equals("")){
+                showMessage("Khong duoc bo trong");
+            } else if( sal <= 0  ){
+                showMessage("Khong nhap so am");
+            } else {               
+                tk = new Timekeeper(id, hireDate, null, emp_id);              
+            }
+        }catch(Exception e){
+            showMessage("Nhap loi" + e);
+        }
+        return tk;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheck;
+    private javax.swing.JComboBox<String> cbEmpID;
     private javax.swing.JComboBox<String> cbInout;
+    private javax.swing.JComboBox<String> cbTKID;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -623,14 +696,14 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel labelID;
+    private javax.swing.JTable tblEmp;
+    private javax.swing.JTable tblTK;
     // End of variables declaration//GEN-END:variables
 
 }
