@@ -331,7 +331,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
         jButton2.addActionListener(listener);
     }
     
-    public void delEmpListener(ActionListener listener){
+    public void deleteEmpListener(ActionListener listener){
         jButton3.addActionListener(listener);
     }
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -402,9 +402,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
     
     public Employee getEmployee(){
         Employee emp = null;
-        try{
-           
-            
+        try{    
             String name = jTextField2.getText();
             String no = jTextField3.getText();
           
