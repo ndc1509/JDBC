@@ -11,7 +11,7 @@ import java.util.Date;
 public class Timekeeper implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public Timekeeper(String timekeeper_Id, Date date_Time, BigInteger empId, String in_Out) {
+	public Timekeeper(String timekeeper_Id, Date date_Time,  String in_Out,int empId) {
 		super();
 		this.timekeeper_Id = timekeeper_Id;
 		this.date_Time = date_Time;
@@ -23,7 +23,7 @@ public class Timekeeper implements Serializable {
 
 	private Date date_Time;
 
-	private java.math.BigInteger empId;
+	private int empId;
 
 	private String in_Out;
 
@@ -46,11 +46,11 @@ public class Timekeeper implements Serializable {
 		this.date_Time = date_Time;
 	}
 
-	public java.math.BigInteger getEmpId() {
+	public int getEmpId() {
 		return this.empId;
 	}
 
-	public void setEmpId(java.math.BigInteger empId) {
+	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
 
