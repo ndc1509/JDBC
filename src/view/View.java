@@ -9,6 +9,12 @@ import com.mysql.cj.x.protobuf.MysqlxCrud;
 import java.awt.event.*;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,11 +82,11 @@ public class View extends javax.swing.JFrame implements ActionListener{
         jLabel12 = new javax.swing.JLabel();
         btnCheck = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        cbTKID = new javax.swing.JComboBox<>();
         cbInout = new javax.swing.JComboBox<>();
         cbEmpID = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTK = new javax.swing.JTable();
+        txtTKID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -314,8 +320,6 @@ public class View extends javax.swing.JFrame implements ActionListener{
 
         jLabel13.setText("Date");
 
-        cbTKID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TK1", "TK2", "TK3", "TK4" }));
-
         cbInout.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In", "Out" }));
 
         tblTK.setModel(new javax.swing.table.DefaultTableModel(
@@ -352,6 +356,12 @@ public class View extends javax.swing.JFrame implements ActionListener{
             tblTK.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        txtTKID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTKIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -359,20 +369,20 @@ public class View extends javax.swing.JFrame implements ActionListener{
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel9))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addGap(30, 30, 30)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbEmpID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbTKID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13)
                             .addComponent(cbInout, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(txtTKID, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCheck)
                         .addGap(178, 178, 178))))
@@ -385,7 +395,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(btnCheck)
-                    .addComponent(cbTKID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTKID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
@@ -455,6 +465,10 @@ public class View extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
+    private void txtTKIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTKIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTKIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -506,6 +520,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
             emps[i][7] = list.get(i).getMngId();
         }
         tblEmp.setModel(new DefaultTableModel(emps, new String[] {"EMP_ID", "EMP_NAME", "EMP_NO", "HIRE_DATE", "JOB", "SALARY", "DEPT_ID", "MNG_ID"}));
+        showListEmpID(list);
     }
     
     public Employee getEmployee(){
@@ -601,7 +616,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
     public void showListTimekeeper(List<Timekeeper> list){
         int size = list.size();
         
-        Object [][] tks = new Object[size][8];
+        Object [][] tks = new Object[size][4];
         for(int i=0; i<size; i++){
             tks[i][0] = list.get(i).getTimekeeper_Id();
             tks[i][1] = list.get(i).getDate_Time();
@@ -614,61 +629,47 @@ public class View extends javax.swing.JFrame implements ActionListener{
     public Timekeeper getTimekeeper(){
         Timekeeper tk = null;
         try{    
-            String id = null;
-            switch(cbEmpID.getSelectedIndex()){
+            String id = txtTKID.getText();
+            
+                        
+            LocalDate now = LocalDate.now();           
+            String formattedDate = now.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            Date date = formatter.parse(formattedDate);
+            String check = null;
+            
+            switch(cbInout.getSelectedIndex()){
                 case 0:
-                    id = "TK1";
+                    check = "i";
                     break;
                 case 1:
-                    id = "TK2";
-                    break;
-                case 2:
-                    id = "TK3";
-                    break;
-                case 3:
-                    id = "TK4";
+                    check = "o";
                     break;
                 default:
-                    break;
+                    
             }
-            String no = jTextField3.getText();
-          
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
-            Date hireDate = formatter.parse(jFormattedTextField1.getText());
-            int jobBox = jComboBox1.getSelectedIndex();
-            String job = null;
-            if(jobBox == 0){
-                job = "Fresher IT";
-            }
-            if(jobBox == 1){
-                job = "Junior IT";
-            }
-            if(jobBox == 2){
-                job = "Senior IT";
-            }
-            if(jobBox == 3){
-                job = "IT Manager";
-            }
-            float sal = Float.parseFloat(jTextField4.getText());
-            int emp_id = Integer.parseInt(jTextField5.getText());
-            java.math.BigInteger mng_id = BigInteger.valueOf(Long.parseLong(jTextField6.getText()));
-            if( jTextField2.equals("") || jTextField3.equals("") || jTextField4.equals("") || jTextField5.equals("") || jTextField6.equals("")){
-                showMessage("Khong duoc bo trong");
-            } else if( sal <= 0  ){
-                showMessage("Khong nhap so am");
-            } else {               
-                tk = new Timekeeper(id, hireDate, null, emp_id);              
-            }
+            
+            int emp_id = Integer.parseInt(cbEmpID.getSelectedItem().toString());
+                                
+            tk = new Timekeeper(id, date, check, emp_id);              
+            showMessage(date + formattedDate);
         }catch(Exception e){
             showMessage("Nhap loi" + e);
         }
         return tk;
     }
+    
+    public void showListEmpID(List<Employee> employees){
+        cbEmpID.removeAllItems();
+        for(int i=0; i< employees.size(); i++){
+            cbEmpID.addItem(String.valueOf(employees.get(i).getEmpId()));
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheck;
     private javax.swing.JComboBox<String> cbEmpID;
     private javax.swing.JComboBox<String> cbInout;
-    private javax.swing.JComboBox<String> cbTKID;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -704,6 +705,7 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel labelID;
     private javax.swing.JTable tblEmp;
     private javax.swing.JTable tblTK;
+    private javax.swing.JTextField txtTKID;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import controller.dao.DAOEmployee;
 import controller.dao.DAOTimekeeper;
 import controller.utils.ConnectionUtils;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import model.Employee;
 import model.Timekeeper;
 import view.View;
 
@@ -22,11 +24,13 @@ import view.View;
 public class TimekeeperControl {
         View view;
 	DAOTimekeeper dao;
+        DAOEmployee daoEmp;
 	Timekeeper[] timekeepers;
         
 	public TimekeeperControl(View view) {
 		try {
 			dao = new DAOTimekeeper(ConnectionUtils.getMyConnection());
+                        daoEmp = new DAOEmployee(ConnectionUtils.getMyConnection());
 			this.view = view;     
                         displayAll();
 			view.addTKListener(new CheckInOutListener());
@@ -51,8 +55,10 @@ public class TimekeeperControl {
       
          
 	public void displayAll(){
+            List<Employee> empList = Arrays.asList(daoEmp.selectAll());
             List<Timekeeper> tkList =  Arrays.asList(dao.selectAll());
             view.showListTimekeeper(tkList);
+            view.showListEmpID(empList);
 	}
 	
 	public void exit(){
