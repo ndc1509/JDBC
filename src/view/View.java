@@ -21,6 +21,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
+import model.SalaryGrade;
 import model.Timekeeper;
 
 /**
@@ -75,6 +76,19 @@ public class View extends javax.swing.JFrame implements ActionListener{
         labelID = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtGrade = new javax.swing.JTextField();
+        txtHslr = new javax.swing.JTextField();
+        txtLslr = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblLuong = new javax.swing.JTable();
+        btnAddSlr = new javax.swing.JButton();
+        btnUpdateSlr = new javax.swing.JButton();
+        btnEditSlr = new javax.swing.JButton();
+        btnDelSlr = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -295,15 +309,128 @@ public class View extends javax.swing.JFrame implements ActionListener{
 
         jTabbedPane1.addTab("Phòng ban", jPanel2);
 
+        jLabel14.setText("Grade");
+
+        jLabel15.setText("High_salary");
+
+        jLabel16.setText("Lương thấp");
+
+        txtGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGradeActionPerformed(evt);
+            }
+        });
+
+        tblLuong.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Grade", "High salary", "Low salary"
+            }
+        ));
+        jScrollPane3.setViewportView(tblLuong);
+
+        btnAddSlr.setText("Thêm");
+        btnAddSlr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSlrActionPerformed(evt);
+            }
+        });
+
+        btnUpdateSlr.setText("Cập nhật");
+        btnUpdateSlr.setEnabled(false);
+        btnUpdateSlr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateSlrActionPerformed(evt);
+            }
+        });
+
+        btnEditSlr.setText("Sửa");
+
+        btnDelSlr.setText("Xóa");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(91, 91, 91)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtGrade, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(txtHslr)
+                            .addComponent(txtLslr))
+                        .addGap(93, 93, 93)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddSlr)
+                            .addComponent(btnUpdateSlr))
+                        .addGap(0, 243, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addComponent(btnEditSlr, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(173, 173, 173)
+                .addComponent(btnDelSlr, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddSlr))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtHslr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateSlr))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtLslr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditSlr)
+                    .addComponent(btnDelSlr))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 724, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 582, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Lương", jPanel3);
@@ -453,6 +580,22 @@ public class View extends javax.swing.JFrame implements ActionListener{
         btnCheck.addActionListener(listener);
     }
     
+    //SalaryViewListeners
+    public void addSgListener(ActionListener listener){
+        btnAddSlr.addActionListener(listener);
+    }
+    
+    public void updateSgListener(ActionListener listener){
+        btnUpdateSlr.addActionListener(listener);
+    }
+    
+    public void editSgListener(ActionListener listener){
+        btnEditSlr.addActionListener(listener);
+    }
+    
+    public void deleteSgListener(ActionListener listener){
+        btnDelSlr.addActionListener(listener);
+    }
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -468,6 +611,18 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private void txtTKIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTKIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTKIDActionPerformed
+
+    private void txtGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGradeActionPerformed
+
+    private void btnAddSlrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSlrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddSlrActionPerformed
+
+    private void btnUpdateSlrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSlrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateSlrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -666,8 +821,80 @@ public class View extends javax.swing.JFrame implements ActionListener{
             cbEmpID.addItem(String.valueOf(employees.get(i).getEmpId()));
         }
     }
+    
+    //SALARY
+    public SalaryGrade getSalaryGrade(){
+        SalaryGrade emp = null;
+        try{    
+            int grade = Integer.parseInt(txtGrade.getText());
+            float hs = Float.parseFloat(txtHslr.getText());
+            float ls = Float.parseFloat(txtLslr.getText());
+            if( txtGrade.equals("") || txtHslr.equals("") || txtLslr.equals("")){
+                showMessage("Khong duoc bo trong");
+            } else if( grade <= 0 || hs <= 0 ||ls <=0 ){
+                showMessage("Khong nhap so am");
+            } else {               
+                emp = new SalaryGrade(grade, hs, ls);              
+            }
+        }catch(Exception e){
+            showMessage("Nhap loi" + e);
+        }
+        return emp;
+    }
+    
+    public SalaryGrade getUpdatedSalaryGrade(){
+        SalaryGrade emp = null;
+        try{
+            int grade = Integer.parseInt(txtGrade.getText());
+            float hs = Float.parseFloat(txtHslr.getText());
+            float ls = Float.parseFloat(txtLslr.getText());
+            if( txtGrade.equals("") || txtHslr.equals("") || txtLslr.equals("")){
+                showMessage("Khong duoc bo trong");
+            } else if( grade <= 0 || hs <= 0 || ls <=0 ){
+                showMessage("Khong nhap so am");
+            } else {
+                
+                emp = new SalaryGrade(grade, hs, ls);
+                btnUpdateSlr.setEnabled(false);
+                btnAddSlr.setEnabled(true);
+            }
+        }catch(Exception e){
+            showMessage("Nhap loi " + e);
+        }
+        return emp;
+    }
+    
+    public void showEditSalaryGrade(){
+        int row = tblLuong.getSelectedRow();           
+        txtGrade.setText(tblLuong.getModel().getValueAt(row, 0).toString());
+        txtHslr.setText(tblLuong.getModel().getValueAt(row, 1).toString());
+        txtLslr.setText(tblLuong.getModel().getValueAt(row, 2).toString());  
+        btnAddSlr.setEnabled(true);
+        btnEditSlr.setEnabled(false);
+    }
+    
+    public void showListSalaryGrade(List<SalaryGrade> list){
+        int size = list.size();
+        
+        Object [][] emps = new Object[size][3];
+        for(int i=0; i<size; i++){
+            emps[i][0] = list.get(i).getGrade();
+            emps[i][1] = list.get(i).getHighSalary();
+            emps[i][2] = list.get(i).getLowSalary();
+        }
+        tblLuong.setModel(new DefaultTableModel(emps, new String[] {"GRADE", "HIGH_SALARY", "LOW_SALARY"}));
+    }  
+    
+    public int delSalaryGrade(){
+        int row = tblLuong.getSelectedRow();
+        return Integer.parseInt(tblLuong.getModel().getValueAt(row, 0).toString());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddSlr;
     private javax.swing.JButton btnCheck;
+    private javax.swing.JButton btnDelSlr;
+    private javax.swing.JButton btnEditSlr;
+    private javax.swing.JButton btnUpdateSlr;
     private javax.swing.JComboBox<String> cbEmpID;
     private javax.swing.JComboBox<String> cbInout;
     private javax.swing.JButton jButton1;
@@ -681,6 +908,9 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -694,8 +924,10 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -704,7 +936,11 @@ public class View extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel labelID;
     private javax.swing.JTable tblEmp;
+    private javax.swing.JTable tblLuong;
     private javax.swing.JTable tblTK;
+    private javax.swing.JTextField txtGrade;
+    private javax.swing.JTextField txtHslr;
+    private javax.swing.JTextField txtLslr;
     private javax.swing.JTextField txtTKID;
     // End of variables declaration//GEN-END:variables
 

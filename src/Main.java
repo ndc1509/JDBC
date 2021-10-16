@@ -1,5 +1,6 @@
 
 import controller.EmployeeControl;
+import controller.SalaryGradeControl;
 import controller.TimekeeperControl;
 import java.awt.EventQueue;
 import view.View;
@@ -22,6 +23,7 @@ public class Main {
                 view.setVisible(true);
                 EmployeeControl controllerEMP = new EmployeeControl(view);
                 TimekeeperControl controllerTK = new TimekeeperControl(view);
+                SalaryGradeControl controllerSLR = new SalaryGradeControl(view);
             }
         });
         
